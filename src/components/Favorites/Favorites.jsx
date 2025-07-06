@@ -4,8 +4,6 @@ import "./Favorites.css";
 export const Favorites = ({ todos, onToggleTodo, onDeleteTodo, onToggleFavorite }) => {
     const favorites = todos.filter((todo) => todo.favorite);
 
-    console.log('Favoritos', favorites);
-
     return (
         <div className="favorites-container">
             <h2 className="favorites-title">⭐ Favoritos</h2>
