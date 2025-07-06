@@ -20,8 +20,12 @@ La app incluye:
 git clone https://github.com/Eleven-Code-School/react-todo-app
 cd react-todo-app
 ```
+IMPORTANTE Cámbiate a la rama `starter-code` para empezar desde el código base.
+
+Si no cambias de rama, estarás trabajando sobre la rama `main` que ya tiene el código final.
 
 2. **Elimina la carpeta `.git` para desvincularte del repositorio original:**
+Tienes que eliminar la carpeta `.git` estando dentro del proyecto clonado y **en la rama `starter-code`**. Esto es importante para que puedas iniciar tu propio repositorio sin conflictos.
 
 ```bash
 rm -rf .git (no uses este comando, te recomiendo eliminar la carpeta manualmente desde vscode o tu explorador de archivos)
