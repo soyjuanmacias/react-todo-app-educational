@@ -14,7 +14,9 @@ export const TodoList = (props) => {
                     <TodoItem
                         key={todo.id}
                         todo={todo}
-                        toggleTodo={props.toggleTodo}
+                        onToggleTodo={props.onToggleTodo}
+                        onDeleteTodo={props.onDeleteTodo}
+                        onToggleFavorite={props.onToggleFavorite}
                     />
                 )
             })}
