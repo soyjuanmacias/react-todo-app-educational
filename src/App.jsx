@@ -5,44 +5,24 @@ import { Tabs } from "./components/Navigation/Tabs";
 import { TodoForm } from "./components/TodoForm/TodoForm";
 import { TodoList } from "./components/TodoList/TodoList";
 import { Favorites } from "./components/Favorites/Favorites";
+import { storage } from "./helpers/storage";
 
-const INITIAL_TODOS = [
-    {
-        text: "Hacer la cama",
-        completed: false,
-        favorite: false,
-        id: 1751803766993,
-        done: false,
-    },
-    {
-        text: "Programar React y hacer la Todo App",
-        completed: false,
-        favorite: false,
-        id: 1751803792886,
-        done: false,
-    },
-    {
-        text: "Programar 2 horas diarias",
-        completed: false,
-        favorite: false,
-        id: 1751803804408,
-        done: false,
-    },
-    {
-        text: "Hacer el proyecto de CV",
-        completed: false,
-        favorite: false,
-        id: 1751803810893,
-        done: false,
-    },
-];
+const STORAGE_TODOS_KEY = "todos";
+
+const INITIAL_TODOS = storage.get(STORAGE_TODOS_KEY);
 
 export const App = () => {
     const [activeTab, setActiveTab] = useState(Tabs.TODOS);
-    const [todos, setTodos] = useState(INITIAL_TODOS);
+    const [todos, setTodos] = useState(INITIAL_TODOS || []);
 
     const addTodo = (newTodo) => {
-        setTodos((prev) => [...prev, newTodo]);
+        setTodos((prev) => {
+            const nextState = [...prev, newTodo]
+
+            storage.save(STORAGE_TODOS_KEY, nextState)
+
+            return nextState;
+        });
     };
 
     const onToggleTodo = (id) => {
@@ -51,6 +31,7 @@ export const App = () => {
         });
 
         setTodos(updatedTodos);
+        storage.save(STORAGE_TODOS_KEY, updatedTodos)
     };
 
     const onToggleFavorite = (id) => {
@@ -59,11 +40,13 @@ export const App = () => {
         });
 
         setTodos(updatedTodos);
+        storage.save(STORAGE_TODOS_KEY, updatedTodos)
     };
 
     const onDeleteTodo = (id) => {
         const filtered = todos.filter((todo) => todo.id !== id);
         setTodos(filtered);
+        storage.save(STORAGE_TODOS_KEY, filtered)
     };
 
     return (
