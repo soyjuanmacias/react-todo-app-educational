@@ -6,7 +6,10 @@ import "./TodoItem.css";
 
 export const TodoItem = ({ todo, onToggleTodo, onDeleteTodo, onToggleFavorite }) => {
     return (
-        <div className={`todo-item ${todo.done ? "done" : ""}`} onClick={() => onToggleTodo(todo.id)}>
+        <div
+            className={`todo-item ${todo.done ? "done" : ""}`}
+            onClick={() => onToggleTodo(todo.id)}
+        >
             <span className="todo-text">{todo.text}</span>
 
             <div className="todo-actions">
